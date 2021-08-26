@@ -9,7 +9,7 @@ using namespace std;
 
 //declarations for methods
 void commandProcessor(char *arr);
-void inputConverter(string arr[], char *commandArray);
+char inputConverter(string command);
 
 
 
@@ -22,7 +22,6 @@ int main(int argc, char const *argv[]) {
     bool waiting = false;
     string s;
     string commandArr[6];
-    bool keepLooping = true;
     int counter = 0;
 
     cout << "Thank you for playing the game! Please do not use uppercase letters, " <<
@@ -31,9 +30,8 @@ int main(int argc, char const *argv[]) {
 
     while(gameRunning)
     {
-        while(keepLooping && counter < 5)
+        while(counter < 5)
         {
-            counter++;
             cin >> s;
             if(s == "done")
             {
@@ -47,22 +45,16 @@ int main(int argc, char const *argv[]) {
             }
             else
             {
-                commandArr[counter] = s;
-                //cout << s << "\n";
+                commandArray[counter] = inputConverter(s);
             }
+            counter++;
         }
 
-        inputConverter(commandArr, commandArray);
         commandProcessor(commandArray);
-        waiting = true;
-        while(waiting)
-        {
-            char c;
-            cout << "Presss any key to continue.\n";
-            cin >> c;
-            waiting = false;
-            counter = 0;
-        }
+        cout << "This is where other actions would occur.\n";
+        char cont;
+        cin >> cont;
+        counter = 0;
 
     }
     return 0;
@@ -71,24 +63,22 @@ int main(int argc, char const *argv[]) {
 
 //this takes the input and converts it to usable characters
 //there is room for improvement here
-void inputConverter(string arr[], char retVal[])
+char inputConverter(string command)
 {
-    for(int i = 1; i < 5; i++)
+    if(command == "right" || command == "rihgt")
     {
-        if(arr[i] == "right" || arr[i] == "rihgt")
-        {
-            retVal[i] = 'r';
-        }
-        else if(arr[i] == "left")
-        {
-            retVal[i] = 'l';
-        }
-        else if(arr[i] == "middle" || arr[i] == "mid" || arr[i] == "midle")
-        {
-            retVal[i] = 'm';
-        }
-
+         return 'r';
     }
+    else if(command == "left")
+    {
+        return 'l';
+    }
+    else if(command == "middle" || command == "mid" || command == "midle" ||
+     command == "center")
+    {
+        return 'm';
+    }
+    return '0';
 
 }
 
