@@ -18,13 +18,11 @@ namespace I
     class item
     {
     public:
-        {
-            /*
-                Not sure yet how to do the item data, string doesnt really
-                feel like a good idea in c++. In Java that's probably the way to
-                go though.
-            */
-            std::vector<double>::iterator listStats();
-        }
-    }
+        /*
+            Not sure yet how to do the item data, string doesnt really
+            feel like a good idea in c++. In Java that's probably the way to
+            go though.
+        */
+        std::vector<double>::iterator listStats();
+    };
 }

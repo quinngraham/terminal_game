@@ -1,3 +1,4 @@
+
 #include "stdio.h"
 #include "stdlib.h"
 #include <iostream>
@@ -17,7 +18,7 @@ char inputConverter(string command);
 void getInput();
 P::PLAYER initPlayer(FILE playerFile);
 void listCommands();
-vector<R::ROOM> createNextRooms();
+void createNextRooms();
 
 
 
@@ -26,12 +27,16 @@ vector<R::ROOM> createNextRooms();
 bool gameRunning;
 char commandArray[] = {' ', ' ', ' ', ' ', ' '};//not sure if doing this is even req lol
 P::PLAYER *currentPlayer;
+R::ROOM* roomArray[3];
+R::ROOM* currentRoom;
+
 
 
 //can expand functionality to parse saved text files to save gamestate and stuff
 int main(int argc, char const *argv[]) {
     gameRunning = true;
-
+    currentRoom = new R::ROOM;
+    currentRoom->containsEnemy = false;
     cout << "Thank you for playing the game! Please do not use uppercase letters, " <<
     "as you will not get a correct command response. Use 'c' or 'command' to get " <<
     "available commands.\n";
@@ -63,7 +68,6 @@ void getInput()
         }
         else if(s == "c" || s == "commands")
         {
-            //cout << "Available commands are: \n";
             listCommands();
             counter--;
             //loop with function that prints available commands, todo
@@ -143,13 +147,14 @@ void commandProcessor(char *arr){
 
 //this is (hopefully) going to create the next 3 rooms in order from 0:left, 1:middle,
 //2:right
-vector<R::ROOM> createNextRooms()
+void createNextRooms()
 {
-    vector<R::ROOM> r;
     R::ROOM *left = new R::ROOM;
     R::ROOM *middle = new R::ROOM;
     R::ROOM *right = new R::ROOM;
-    return r;
+    roomArray[0] = left;
+    roomArray[1] = middle;
+    roomArray[2] = right;
 }
 
 //these are going to be the commands that are available to the player.

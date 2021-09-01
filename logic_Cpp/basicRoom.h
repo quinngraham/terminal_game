@@ -15,6 +15,8 @@ namespace R
     {
         std::vector<char> roomQuals;
         std::vector<char> enterActions;
+        bool containsEnemy;
+        
     };
 
 
