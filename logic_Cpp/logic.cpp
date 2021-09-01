@@ -34,21 +34,26 @@ int main(int argc, char const *argv[]) {
     gameRunning = true;
     cout << "Thank you for playing the game! Please do not use uppercase letters, " <<
     "as you will not get a correct command response. Use 'c' or 'command' to get " <<
-    "available commands.\n"; 
+    "available commands.\n";
     currentRoom->right = new R::basicRoom;
     currentRoom->middle = new R::basicRoom;
     currentRoom->left = new R::basicRoom;
 
-
+    getInput();
     while(gameRunning)
     {
-        getInput();
-        //currentroom call needs to go here
+        currentRoom->makeNextRooms(currentRoom->right);
+        currentRoom->makeNextRooms(currentRoom->middle);
+        currentRoom->makeNextRooms(currentRoom->left);
         commandProcessor(commandArray);
-        cout << "This is where other actions would occur.\n";
+        //cout << "This is where other actions would occur.\n";
         cout << "Press enter to continue.\n";
         currentRoom->enterActions();
-        
+        for(int i = 0; i < 5; i++)
+        {
+            commandArray[i] = ' ';
+        }
+        getInput();
     }
     return 0;
 }
@@ -95,7 +100,7 @@ void getInput()
         counter++;
     }
     cin.ignore();//not sure of the functionality of this, might need .get()
-    
+
 }
 
 
@@ -129,26 +134,25 @@ void commandProcessor(char *arr){
         //call the actionable method move here
         switch(arr[i])
         {
-            case 'q': gameRunning = false;
+            case 'q':
+                gameRunning = false;
                 break;
-            case 'r': 
-            cout << "going right\n";
-            currentRoom->roomType = currentRoom->right->roomType;
-            currentRoom->basicModifier = currentRoom->right->basicModifier;
-            currentRoom->containsNPC = true;
+            case 'r':
+                cout << "going right\n";
+                currentRoom->roomType = currentRoom->right->roomType;
+                currentRoom->basicModifier = currentRoom->right->basicModifier;
                 break;
             case 'l':
-            cout << "going left\n";
-            currentRoom->roomType = currentRoom->left->roomType;
-            currentRoom->basicModifier = currentRoom->left->basicModifier;
-            currentRoom->containsNPC = false;
+                cout << "going left\n";
+                currentRoom->roomType = currentRoom->left->roomType;
+                currentRoom->basicModifier = currentRoom->left->basicModifier;
                 break;
             case 'm': cout << "staying straight\n";
-            currentRoom->roomType = currentRoom->middle->roomType;
-            currentRoom->basicModifier = currentRoom->middle->basicModifier;
-            currentRoom->containsNPC = true;
+                currentRoom->roomType = currentRoom->middle->roomType;
+                currentRoom->basicModifier = currentRoom->middle->basicModifier;
                 break;
-            default: cout << "unkown command: passing this move.\n";
+            default:
+                cout << "unkown command: passing this move.\n";
 
         }
 
@@ -166,7 +170,8 @@ void listCommands()
     cout << "Game commands:\n";
     cout << "\t|'done' ends the current game (data is saved).       |\n";
     cout << "\t|'mp' is the command that makes a new player.        |\n";
-    cout << "\t|'lp' is the command that loads a previous player.   |(needs to be clearer)\n\n";
+    cout << "\t|'lp playerName' is the command that loads a         |\n";
+    cout << "\t|previous player.                                    |\n\n";
     cout << "These are the in-game commands:\n";
     cout << "\t|'right' takes the player to the room to the right.  |\n";
     cout << "\t|'left' takes the player to the room to the left.    |\n";

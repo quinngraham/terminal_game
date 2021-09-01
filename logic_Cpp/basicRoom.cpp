@@ -8,9 +8,9 @@ using namespace std;
 
 void basicRoom::makeNextRooms(basicRoom* room)
 {
-     
+
      int randNumber = rand() % 3000;
-     
+
      if( randNumber <= 2000 )
      {
         room->roomType = 'n';
@@ -31,16 +31,15 @@ void basicRoom::makeNextRooms(basicRoom* room)
 //could make this return a char to determine effect then?
 void basicRoom::enterActions()
 {
-     
      char type = this->roomType;
      switch(type)
      {
         case 'n': cout << "Nothing ended up happening in this room.\n";
             break;
-        case 'd': cout << "Player is damaged.\n";
+        case 'd': cout << "The Player is damaged.\n";
             break;
-        default: "The Player is healed.\n";
+        default: cout << "The Player is healed.\n";
 
      }
 
-} 
+}
