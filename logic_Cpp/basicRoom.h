@@ -11,19 +11,10 @@ namespace R
 {
 
 
-    struct ROOM
-    {
-        std::vector<char> roomQuals;
-        std::vector<char> enterActions;
-        bool containsEnemy;
-        
-    };
-
-
     class basicRoom
     {
     public:
-        bool enter_actions(ROOM r);
+        bool enter_actions(basicRoom r);
     };
 
 

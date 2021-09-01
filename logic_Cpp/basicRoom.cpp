@@ -9,7 +9,7 @@ using namespace std;
 
 
 
-bool basicRoom::enter_actions(ROOM r)
+bool enter_actions(basicRoom r)
 {
     vector<char> inter = r.enterActions;
 
