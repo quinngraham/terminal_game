@@ -27,9 +27,7 @@ void createRooms();
 bool gameRunning;
 char commandArray[] = {' ', ' ', ' ', ' ', ' '};//not sure if doing this is even req lol
 P::PLAYER* currentPlayer;
-R::basicRoom roomArray[3];
-R::basicRoom* currentRoom;
-
+R::basicRoom* currentRoom = new R::basicRoom;
 
 
 //can expand functionality to parse saved text files to save gamestate and stuff
@@ -37,12 +35,17 @@ int main(int argc, char const *argv[]) {
     gameRunning = true;
     cout << "Thank you for playing the game! Please do not use uppercase letters, " <<
     "as you will not get a correct command response. Use 'c' or 'command' to get " <<
-    "available commands.\n";
+    "available commands.\n"; 
+    currentRoom->right = new R::basicRoom;
+    currentRoom->middle = new R::basicRoom;
+    currentRoom->left = new R::basicRoom;
+
 
     while(gameRunning)
     {
         getInput();
         createRooms();
+        currentRoom->enterActions();
         
     }
     return 0;
@@ -123,18 +126,29 @@ char inputConverter(string command)
 //this takes the input converted to characters and does the correct actions
 void commandProcessor(char *arr){
 
-    for(int i = 0; i < 5; i++)
+    for(int i = 0; i < 1; i++)
     {
         //call the actionable method move here
         switch(arr[i])
         {
             case 'q': gameRunning = false;
                 break;
-            case 'r': cout << "going right\n";
+            case 'r': 
+            cout << "going right\n";
+            currentRoom->roomType = currentRoom->right->roomType;
+            currentRoom->basicModifier = currentRoom->right->basicModifier;
+            currentRoom->containsNPC = true;
                 break;
-            case 'l': cout << "going left\n";
+            case 'l':
+            cout << "going left\n";
+            currentRoom->roomType = currentRoom->left->roomType;
+            currentRoom->basicModifier = currentRoom->left->basicModifier;
+            currentRoom->containsNPC = false;
                 break;
             case 'm': cout << "staying straight\n";
+            currentRoom->roomType = currentRoom->middle->roomType;
+            currentRoom->basicModifier = currentRoom->middle->basicModifier;
+            currentRoom->containsNPC = true;
                 break;
             default: cout << "unkown command: passing this move.\n";
 
@@ -149,8 +163,7 @@ void commandProcessor(char *arr){
 //2:right
 void createRooms()
 {
-    
-
+    //currentRoom->makeNextRooms();
 }
 
 //these are going to be the commands that are available to the player.

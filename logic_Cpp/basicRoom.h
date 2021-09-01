@@ -14,7 +14,15 @@ namespace R
     class basicRoom
     {
     public:
-        bool enter_actions(basicRoom r);
+        bool enterActions();
+        void makeNextRooms();
+
+        bool containsNPC;
+        char basicModifier;
+        char roomType;
+        basicRoom* right = nullptr;
+        basicRoom* middle = nullptr;
+        basicRoom* left = nullptr; 
     };
 
 
