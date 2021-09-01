@@ -18,7 +18,6 @@ char inputConverter(string command);
 void getInput();
 P::PLAYER initPlayer(FILE playerFile);
 void listCommands();
-void createRooms();
 
 
 
@@ -44,7 +43,10 @@ int main(int argc, char const *argv[]) {
     while(gameRunning)
     {
         getInput();
-        createRooms();
+        //currentroom call needs to go here
+        commandProcessor(commandArray);
+        cout << "This is where other actions would occur.\n";
+        cout << "Press enter to continue.\n";
         currentRoom->enterActions();
         
     }
@@ -61,7 +63,7 @@ void getInput()
 {
     string s;
     int counter = 0;
-    while(counter < 5)
+    while(counter < 1)
     {
         cin >> s;
         if(s == "done")
@@ -92,12 +94,8 @@ void getInput()
         }
         counter++;
     }
-
-    commandProcessor(commandArray);
-    cout << "This is where other actions would occur.\n";
-    cout << "Press enter to continue.\n";
     cin.ignore();//not sure of the functionality of this, might need .get()
-    counter = 0;
+    
 }
 
 
@@ -159,12 +157,7 @@ void commandProcessor(char *arr){
 }
 
 
-//this is (hopefully) going to create the next 3 rooms in order from 0:left, 1:middle,
-//2:right
-void createRooms()
-{
-    //currentRoom->makeNextRooms();
-}
+
 
 //these are going to be the commands that are available to the player.
 //for now, they will just be general commands.

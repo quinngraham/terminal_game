@@ -3,72 +3,37 @@
 #include <iostream>
 
 using namespace R;
+using namespace std;
 
-void basicRoom::makeNextRooms()
+
+void basicRoom::makeNextRooms(basicRoom* room)
 {
+     
      int randNumber = rand() % 3000;
-
+     
      if( randNumber <= 2000 )
      {
-        this->right->roomType = 'n';
+        room->roomType = 'n';
      }
      else if( randNumber >= 2500 )
      {
-        this->right->roomType = 'd';
+        room->roomType = 'd';
      }
      else
      {
-        this->right->roomType = 'h';
+        room->roomType = 'h';
      }
-
-     //not sure what to do with modifiers or other characters for now
-     this->right->basicModifier = '1';
-     this->right->containsNPC = true;
-     randNumber = rand() % 3000;
-     if( randNumber <= 2000 )
-     {
-        this->middle->roomType = 'n';
-     }
-     else if( randNumber >= 2500 )
-     {
-        this->middle->roomType = 'd';
-     }
-     else
-     {
-        this->middle->roomType = 'h';
-     }
-
-     //not sure what to do with modifiers or other characters for now
-     this->middle->basicModifier = '1';
-     this->middle->containsNPC = true;
-     randNumber = rand() % 3000;
-     if( randNumber <= 2000 )
-     {
-        this->left->roomType = 'n';
-     }
-     else if( randNumber >= 2500 )
-     {
-        this->left->roomType = 'd';
-     }
-     else
-     {
-        this->left->roomType = 'h';
-     }
-
-     //not sure what to do with modifiers or other characters for now
-     this->left->basicModifier = '1';
-     this->left->containsNPC = true;  
-
+     room->containsNPC = true;
 }
 
 
 
 //could make this return a char to determine effect then?
-bool basicRoom::enterActions()
+void basicRoom::enterActions()
 {
      
      char type = this->roomType;
-     switch(c)
+     switch(type)
      {
         case 'n': cout << "Nothing ended up happening in this room.\n";
             break;

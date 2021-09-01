@@ -14,8 +14,8 @@ namespace R
     class basicRoom
     {
     public:
-        bool enterActions();
-        void makeNextRooms();
+        void enterActions();
+        void makeNextRooms(basicRoom* room);
 
         bool containsNPC;
         char basicModifier;
