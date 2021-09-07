@@ -47,7 +47,6 @@ int main(int argc, char const *argv[]) {
         currentRoom->makeNextRooms(currentRoom->left);
         commandProcessor(commandArray);
         //cout << "This is where other actions would occur.\n";
-        cout << "Press enter to continue.\n";
         currentRoom->enterActions();
         for(int i = 0; i < 5; i++)
         {

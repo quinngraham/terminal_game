@@ -34,11 +34,14 @@ void basicRoom::enterActions()
      char type = this->roomType;
      switch(type)
      {
-        case 'n': cout << "Nothing ended up happening in this room.\n";
+        case 'n': 
+            cout << "Nothing ended up happening in this room.\n\n\tPress Enter to continue.\n";
             break;
-        case 'd': cout << "The Player is damaged.\n";
+        case 'd': 
+            cout << "The Player is damaged.\n\n\tPress Enter to continue.\n";
             break;
-        default: cout << "The Player is healed.\n";
+        default: 
+            cout << "The Player is healed.\n\n\tPress Enter to continue.\n";
 
      }
 

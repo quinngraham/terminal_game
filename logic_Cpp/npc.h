@@ -21,7 +21,7 @@ namespace N
     class npc
     {
         public:
-            bool attack(NPC n);
+            
     };
 
 

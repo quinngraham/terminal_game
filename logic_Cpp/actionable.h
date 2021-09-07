@@ -14,7 +14,6 @@ namespace A
             bool attack(PLAYER p);
             bool defend(NPC n);
             bool defend(PLAYER p);
-            bool move(char direction);
             
         }
     }
